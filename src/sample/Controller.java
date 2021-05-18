@@ -1,16 +1,23 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controller {
+
+    Controller2 controller2 = null;
 
     @FXML
     Tarea t1, t2, t3, t4, t5, t6;
@@ -40,12 +47,12 @@ public class Controller {
     @FXML
     public void initialize(){
 
-        t1 = new Tarea("Hacer Práctica 2 PSP", false);
-        t2 = new Tarea("Hacer Práctica 1 PSP", false);
-        t3 = new Tarea("Hacer Práctica 2 DI", false);
-        t4 = new Tarea("Hacer Práctica 1 DI", false);
-        t5 = new Tarea("Hacer Práctica 2 PMDP", false);
-        t6 = new Tarea("Hacer Práctica 1 PMDP", false);
+        t1 = new Tarea("Hacer Práctica 2 PSP", false, "30/04/21", "", "");
+        t2 = new Tarea("Hacer Práctica 1 PSP", false, "30/04/21", "", "");
+        t3 = new Tarea("Hacer Práctica 2 DI", false, "30/04/21", "", "");
+        t4 = new Tarea("Hacer Práctica 1 DI", false, "30/04/21", "", "");
+        t5 = new Tarea("Hacer Práctica 2 PMDP", false, "30/04/21", "", "");
+        t6 = new Tarea("Hacer Práctica 1 PMDP", false, "30/04/21", "", "");
 
         rB1.setToggleGroup(group);
         rB2.setToggleGroup(group);
@@ -166,6 +173,53 @@ public class Controller {
     public void sTMouseClick6(){
         t6.esFavorito = !t6.esFavorito;
         Binder.binderTarea(t6, l6, sT6);
+    }
+
+    @FXML
+    public void onClickTextField1(){
+        abrirInformacion(t1);
+    }
+
+    @FXML
+    public void onClickTextField2(){
+        abrirInformacion(t2);
+    }
+
+    @FXML
+    public void onClickTextField3(){
+        abrirInformacion(t3);
+    }
+
+    @FXML
+    public void onClickTextField4(){
+        abrirInformacion(t4);
+    }
+
+    @FXML
+    public void onClickTextField5(){
+        abrirInformacion(t5);
+    }
+
+    @FXML
+    public void onClickTextField6(){
+        abrirInformacion(t6);
+    }
+
+
+    private void abrirInformacion(Tarea tarea) {
+
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("sample2.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            controller2 = loader.getController();
+            Scene scene = new Scene(root,450,410);
+            stage.setScene(scene);
+            stage.show();
+            controller2.recibirTarea(tarea);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void ActivacionDeAñadicionDeTarea() {
