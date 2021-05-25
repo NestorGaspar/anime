@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Controller {
 
@@ -96,7 +95,7 @@ public class Controller {
         t1.texto="";
         Binder.binderTarea(t1, l1, sT1);
         lAgregar.setDisable(false);
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
 
     }
 
@@ -105,7 +104,7 @@ public class Controller {
         t2.texto="";
         Binder.binderTarea(t2, l2, sT2);
         lAgregar.setDisable(false);
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
     }
 
     @FXML
@@ -113,7 +112,7 @@ public class Controller {
         t3.texto="";
         Binder.binderTarea(t3, l3, sT3);
         lAgregar.setDisable(false);
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
     }
 
     @FXML
@@ -122,7 +121,7 @@ public class Controller {
         Binder.binderTarea(t4, l4, sT4);
         lAgregar.setDisable(false);
 
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
     }
 
     @FXML
@@ -130,7 +129,7 @@ public class Controller {
         t5.texto="";
         Binder.binderTarea(t5, l5, sT5);
         lAgregar.setDisable(false);
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
     }
 
     @FXML
@@ -138,7 +137,7 @@ public class Controller {
         t6.texto="";
         Binder.binderTarea(t6, l6, sT6);
         lAgregar.setDisable(false);
-        ActivacionDeAñadicionDeTarea();
+        ActivacionTF();
     }
 
     @FXML
@@ -222,20 +221,23 @@ public class Controller {
         }
     }
 
-    public void ActivacionDeAñadicionDeTarea() {
+    public void ActivacionTF() {
         if (!lAgregar.isDisabled()) {
             tfAgregar.setDisable(false);
         }
     }
 
-    public void AñadicionDeTarea() {
-        for (Label l : lstLabel) {
+    public void AñadirTarea() {
+        for (int i = 0; i < lstTarea.size(); i++) {
+            Label l = lstLabel.get(i);
+            Tarea t = lstTarea.get(i);
+            ImageView v = lstImage.get(i);
             if (l.getText().contentEquals("")) {
-                l.setText(tfAgregar.getText());
+                t.texto = tfAgregar.getText();
+                Binder.binderTarea(t, l, v);
                 break;
             }
         }
-        tfAgregar.setDisable(false);
         tfAgregar.setText("");
 
     }

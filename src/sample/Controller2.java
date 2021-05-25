@@ -12,6 +12,8 @@ public class Controller2 {
     public void initialize(){
     }
 
+    Tarea aux;
+
     @FXML
     Label label1, label2;
 
@@ -25,26 +27,28 @@ public class Controller2 {
 
         textField1.setText(tarea.texto);
         label1.setText(tarea.creacion);
-
+        aux = tarea;
     }
 
     public void cambioDeNombre(){
 
-        Long tiempoReal = System.currentTimeMillis();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY kk:mm");
-        Date fecha = new Date(tiempoReal);
-        String tiempo =formatoFecha.format(fecha);
+        Long tiempoM = System.currentTimeMillis();
+        SimpleDateFormat formatoF = new SimpleDateFormat("dd-MM-YYYY kk:mm");
+        Date fecha = new Date(tiempoM);
+        String tiempo =formatoF.format(fecha);
         label2.setText(""+tiempo);
+        label2.setVisible(!textField1.getText().equals(aux.texto));
 
     }
 
     public void cambioDeDetalles(){
 
-        Long tiempoReal = System.currentTimeMillis();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY kk:mm");
-        Date fecha = new Date(tiempoReal);
-        String tiempo =formatoFecha.format(fecha);
+        Long tiempoM = System.currentTimeMillis();
+        SimpleDateFormat formatoF = new SimpleDateFormat("dd-MM-YYYY kk:mm");
+        Date fecha = new Date(tiempoM);
+        String tiempo =formatoF.format(fecha);
         label2.setText(""+tiempo);
+        label2.setVisible(!textArea1.getText().equals(aux.detalles));
 
     }
 
